@@ -1,25 +1,42 @@
 package com.example.pizzariacariege.views
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.pizzariacariege.R
 import com.example.pizzariacariege.ui.theme.BROWN900
 import com.example.pizzariacariege.ui.theme.GRAY900
+import com.example.pizzariacariege.ui.theme.ORANGE
 import com.example.pizzariacariege.ui.theme.WHITE
 
 @Composable
@@ -34,7 +51,9 @@ fun Login(){
                     GRAY900,
                 )
             )
-        ).verticalScroll(rememberScrollState())
+        ).verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
             painter = painterResource(R.drawable.logo),
@@ -45,10 +64,74 @@ fun Login(){
         )
 
         Text(
-            text = "Seja bem-vindo!",
+            text = buildAnnotatedString { append(
+                "Seja bem-vindo! Prepare-se para saborear "
+            )
+                withStyle(
+                    style = SpanStyle(
+                        color = ORANGE
+                    )
+                ){
+                    append("pizzas incríveis \n")
+                }
+                append("com entregas rapidas")
+                                        },
             color = WHITE,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            fontSize = 25.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.fillMaxWidth().padding(20.dp)
         )
+
+        Text(
+            text = "Com um simples clique, sua pizza quentinha chegará a sua mesa.",
+            color = WHITE,
+            fontSize = 16.sp,
+            modifier = Modifier.fillMaxWidth().padding(20.dp, 20.dp, 20.dp, 30.dp),
+
+        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(20.dp),
+            horizontalArrangement = Arrangement.SpaceAround
+
+        ) {
+            Button(
+                onClick = {},
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Transparent
+                ),
+                border = BorderStroke(
+                    width = 1.dp,
+                    color = WHITE
+                )
+            ) {
+                Text(
+                    text = "Cadastre-se",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = WHITE
+                )
+            }
+
+            Button(
+                onClick = {},
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = ORANGE
+                ),
+                modifier = Modifier.shadow(
+                    elevation = 16.dp,
+                    shape = CircleShape,
+                    spotColor = ORANGE
+                )
+            ) {
+                Text(
+                    text = "Fazer login",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = WHITE
+                )
+            }
+        }
     }
 }
 
